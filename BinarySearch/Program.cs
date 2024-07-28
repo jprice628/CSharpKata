@@ -5,9 +5,19 @@ using static LanguageExt.Prelude;
 
 var arr = new int[] { 6, 9, 22, 24, 46, 52, 65, 76, 82, 96 };
 
+PrintTitle("Running without logger...");
 Run(from input in GetInput(args)
     let result = Search(arr, input)
     select ResultMessage(input, result));
+
+Print("");
+
+PrintTitle("Running with logger...");
+Run(from input in GetInput(args)
+    let result = SearchW(arr, input).Invoke()
+    select ResultMessageW(input, result.Value, result.Output));
+
+Print("");
 
 // "Runs" the program and prints the results
 Unit Run(Fin<string> fin) => fin.Match(
@@ -27,9 +37,20 @@ Unit Print(string text)
     return unit;
 }
 
+Unit PrintTitle(string text)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine(text);
+    Console.ResetColor();
+    return unit;
+}
+
 string ResultMessage(int input, Option<int> mIndex) => mIndex.Match(
     Some: index => $"Index of {input} found at {index}.",
     None: () => $"Index for {input} not found.");
+
+string ResultMessageW(int input, Option<int> mIndex, string log) =>
+    log + ResultMessage(input, mIndex);
 
 // Prints an error message and the program's usage instructions
 Unit PrintError(Error err)
