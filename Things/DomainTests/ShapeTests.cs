@@ -11,21 +11,21 @@ public class ShapeTests
     public void Prelude_ToShape_ReturnsShape()
     {
         // Act
-        var shape = ToShape("round");
+        var result = ToShape("round");
 
         // Assert
-        shape.IsSucc.Should().BeTrue();
-        shape.Value().Should().Be(Shape.Round);
+        result.IsSucc.Should().BeTrue();
+        result.Value().Should().Be(Shape.Round);
     }
 
     [TestMethod]
     public void Prelude_ToShape_ReturnsUnableToParseError()
     {
         // Act
-        var shape = ToShape("xyz");
+        var result = ToShape("xyz");
 
         // Assert
-        shape.IsSucc.Should().BeFalse();
-        shape.Error().Message.Should().Be("Prelude: Unable to parse shape.");
+        result.IsSucc.Should().BeFalse();
+        result.Error().Message.Should().Be("Prelude: Unable to parse shape.");
     }
 }
