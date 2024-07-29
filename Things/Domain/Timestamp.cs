@@ -11,7 +11,7 @@ namespace Domain;
 /// records. They do not have an universal constraints, so a record struct is 
 /// used. 
 /// </remarks>
-public readonly record struct Timestamp(DateTimeOffset Value)
+public readonly record struct Timestamp(DateTimeOffset Value) : IComparable<Timestamp>
 {
     /// <summary>
     /// Provides a timestamp for the current time in UTC
@@ -27,6 +27,10 @@ public readonly record struct Timestamp(DateTimeOffset Value)
     public static Fin<Timestamp> New(string valueAsString) =>
         !DateTimeOffset.TryParse(valueAsString, out var value) ? Error.New("Timestamp: Unable to parse string.")
         : new Timestamp(value);
+
+    /// <inheritdoc/>
+    public int CompareTo(Timestamp other) =>
+        Value.CompareTo(other.Value);
 
     /// <summary>
     /// Converts the timestamp to universal time

@@ -1,6 +1,7 @@
 ﻿using Domain;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LanguageExt.Common;
+using LanguageExt;
 
 namespace DomainTests;
 
@@ -52,5 +53,20 @@ public class TimestampTests
         // Assert
         ts.Value.Offset.Should().Be(TimeSpan.Zero);
         ts.Value.Should().Be(DateTimeOffset.Parse("7/29/2024 04:00:00 PM +00:00"));
+    }
+
+    [TestMethod]
+    public void Timestamp_Order_SortsTimestampsCorrectly()
+    {
+        var t1 = Timestamp.New("7/29/2024 1:00:00 PM +00:00").Value();
+        var t2 = Timestamp.New("7/29/2024 2:00:00 PM +00:00").Value();
+        var t3 = Timestamp.New("7/29/2024 3:00:00 PM +00:00").Value();
+
+        var outOfOrder = new[] { t2, t3, t1 };
+        var sorted = outOfOrder.Order().ToArray();
+
+        sorted[0].Should().Be(t1);
+        sorted[1].Should().Be(t2);
+        sorted[2].Should().Be(t3);
     }
 }
