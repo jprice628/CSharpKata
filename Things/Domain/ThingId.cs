@@ -30,7 +30,14 @@ public sealed record ThingId
         Value = value;
 
     /// <summary>
-    /// Constructs a new ThingID
+    /// Constructs a new ThingId with a random GUID
+    /// </summary>
+    /// <returns>A ThingId</returns>
+    public static ThingId New() =>
+        new ThingId(Guid.NewGuid());
+
+    /// <summary>
+    /// Constructs a new ThingId
     /// </summary>
     /// <param name="value">The value of the ID</param>
     /// <returns>A ThingID or an error</returns>
@@ -39,7 +46,7 @@ public sealed record ThingId
         : new ThingId(value);
 
     /// <summary>
-    /// Constructs a new ThingID
+    /// Constructs a new ThingId
     /// </summary>
     /// <param name="guidAsString">The value of the ID as a string</param>
     /// <returns>A ThingID or an error</returns>

@@ -52,4 +52,17 @@ public class ThingIdTests
         result.IsSucc.Should().BeFalse();
         result.Error().Message.Should().Be("ThingId: Unable to parse GUID.");
     }
+
+    [TestMethod]
+    public void ThingId_New_ReturnsRandomThingId()
+    {
+        // Act
+        var id1 = ThingId.New();
+        var id2 = ThingId.New();
+
+        // Assert
+        id1.Value.Should().NotBe(Guid.Empty);
+        id2.Value.Should().NotBe(Guid.Empty);
+        id1.Value.Should().NotBe(id2.Value);
+    }
 }
