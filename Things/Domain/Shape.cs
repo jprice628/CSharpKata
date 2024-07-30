@@ -1,4 +1,5 @@
-﻿using LanguageExt;
+﻿// TODO: Consider global using statements.
+using LanguageExt;
 using LanguageExt.Common;
 
 namespace Things.Domain;
