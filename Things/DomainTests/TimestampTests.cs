@@ -1,6 +1,4 @@
-﻿using Domain;
-using FluentAssertions;
-using LanguageExt.Common;
+﻿using FluentAssertions;
 using LanguageExt;
 
 namespace DomainTests;

@@ -1,4 +1,4 @@
-﻿namespace Domain;
+﻿namespace Things.Domain;
 
 /// <summary>
 /// Provides a set of base functions for the domain

@@ -1,6 +1,4 @@
-﻿using Domain;
-using FluentAssertions;
-using static Domain.Prelude;
+﻿using FluentAssertions;
 
 namespace DomainTests;
 

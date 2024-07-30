@@ -1,5 +1,4 @@
-﻿using Domain;
-using FluentAssertions;
+﻿using FluentAssertions;
 
 namespace DomainTests;
 

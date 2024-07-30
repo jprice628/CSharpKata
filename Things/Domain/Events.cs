@@ -1,4 +1,4 @@
-﻿namespace Domain;
+﻿namespace Things.Domain;
 
 /// <summary>
 /// The base type for events related to things

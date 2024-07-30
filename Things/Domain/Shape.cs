@@ -1,7 +1,7 @@
 ﻿using LanguageExt;
 using LanguageExt.Common;
 
-namespace Domain;
+namespace Things.Domain;
 
 /// <summary>
 /// Used the describe the shape of a thing

@@ -1,7 +1,7 @@
 ﻿using LanguageExt;
 using LanguageExt.Common;
 
-namespace Domain;
+namespace Things.Domain;
 
 /// <summary>
 /// Provides an expressive way to represent the ID of a thing.

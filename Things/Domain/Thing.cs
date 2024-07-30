@@ -3,7 +3,7 @@ using LanguageExt.Common;
 using System.Collections.Immutable;
 using static LanguageExt.Prelude;
 
-namespace Domain;
+namespace Things.Domain;
 
 /// <summary>
 /// An entity which properties and stuff
