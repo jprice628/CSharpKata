@@ -37,4 +37,10 @@ public sealed record Size
         value < 1 ? Error.New("Size: value cannot be less than 1.")
         : value > 10 ? Error.New("Size: value cannot be greater than 10.")
         : new Size(value);
+
+    /// <summary>
+    /// Converts a Size to an integer by returning its value
+    /// </summary>
+    /// <param name="size">A Size</param>
+    public static implicit operator int(Size size) => size.Value;
 }

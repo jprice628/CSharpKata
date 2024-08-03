@@ -38,4 +38,10 @@ public readonly record struct Timestamp(DateTimeOffset Value) : IComparable<Time
     /// <returns>A timestamp</returns>
     public Timestamp ToUniversalTime() =>
         this with { Value = Value.ToUniversalTime() };
+
+    /// <summary>
+    /// Converts a timestamp to a DateTimeOffset by returning its value property
+    /// </summary>
+    /// <param name="timestamp">A timestamp</param>
+    public static implicit operator DateTimeOffset(Timestamp timestamp) => timestamp.Value;
 }

@@ -53,4 +53,11 @@ public sealed record ThingId
     public static Fin<ThingId> New(string guidAsString) =>
         !Guid.TryParse(guidAsString, out var guid) ? Error.New("ThingId: Unable to parse GUID.")
         : New(guid);
+
+
+    /// <summary>
+    /// Converts a ThingId to a Guid by returning its value
+    /// </summary>
+    /// <param name="thingId">A ThingId</param>
+    public static implicit operator Guid(ThingId thingId) => thingId.Value;
 }
