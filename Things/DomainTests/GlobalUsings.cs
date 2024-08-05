@@ -4,4 +4,4 @@ global using LanguageExt.Common;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using Things.Domain;
 global using static LanguageExt.Prelude;
-global using static Things.Domain.Prelude;
+global using static Things.Domain.Functions;

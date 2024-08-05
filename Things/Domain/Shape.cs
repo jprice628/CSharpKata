@@ -25,7 +25,7 @@ public enum Shape
     Angular
 }
 
-public static partial class Prelude
+public static partial class Functions
 {
     /// <summary>
     /// Attempts to convert a string into a shape
