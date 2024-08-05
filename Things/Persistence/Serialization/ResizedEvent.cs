@@ -11,7 +11,7 @@ internal static partial class Serialization
         ["NewSize"] = e.NewSize.Value
     }.ToString();
 
-    private static Fin<ThingEvent> ToResizedEvent(JObject obj) =>
+    private static Either<Error, ThingEvent> ToResizedEvent(JObject obj) =>
         from rawTimestamp in obj.GetRequiredValue<DateTimeOffset>("Timestamp")
         let timestamp = new Timestamp(rawTimestamp)
         from rawNewSize in obj.GetRequiredValue<int>("NewSize")

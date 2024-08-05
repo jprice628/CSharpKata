@@ -32,7 +32,7 @@ public static partial class Prelude
     /// </summary>
     /// <param name="shapeAsString">The input string</param>
     /// <returns>A shape or an error</returns>
-    public static Fin<Shape> ToShape(string shapeAsString) =>
+    public static Either<Error, Shape> ToShape(string shapeAsString) =>
         !Enum.TryParse<Shape>(shapeAsString, true, out var shape) ? Error.New($"Unable to parse shape '{shapeAsString}'.")
         : shape;
 }

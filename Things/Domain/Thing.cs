@@ -53,7 +53,7 @@ public sealed record Thing
     /// </summary>
     /// <param name="events">A set of events, starting with a created event</param>
     /// <returns>A thing or an error</returns>
-    public static Fin<Thing> New(IEnumerable<ThingEvent> events) =>
+    public static Either<Error, Thing> New(IEnumerable<ThingEvent> events) =>
         !events.Any() ? Error.New("A thing cannot be created from an empty stream.")
         : New(events.OrderBy(e => e.Timestamp)); 
 
@@ -62,7 +62,7 @@ public sealed record Thing
     /// </summary>
     /// <param name="events">An orderd set of events</param>
     /// <returns>A thing or an error</returns>
-    private static Fin<Thing> New(IOrderedEnumerable<ThingEvent> events) => 
+    private static Either<Error, Thing> New(IOrderedEnumerable<ThingEvent> events) => 
         events.First() is not CreatedEvent created ? Error.New("A thing's stream must begin with a created event.")
         : events.Skip(1).Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
 

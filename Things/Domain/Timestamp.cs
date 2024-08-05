@@ -24,7 +24,7 @@ public readonly record struct Timestamp(DateTimeOffset Value) : IComparable<Time
     /// </summary>
     /// <param name="valueAsString">A string representing a DateTimeOffset value</param>
     /// <returns>A timestamp or an error</returns>
-    public static Fin<Timestamp> New(string valueAsString) =>
+    public static Either<Error, Timestamp> New(string valueAsString) =>
         !DateTimeOffset.TryParse(valueAsString, out var value) ? Error.New("Unable to parse timestamp.")
         : new Timestamp(value);
 

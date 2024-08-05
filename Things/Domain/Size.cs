@@ -33,7 +33,7 @@ public sealed record Size
     /// </summary>
     /// <param name="value">An integer from 1 to 10 (inclusive)</param>
     /// <returns>A size value or an error</returns>
-    public static Fin<Size> New(int value) =>
+    public static Either<Error, Size> New(int value) =>
         value < 1 ? Error.New("Size values cannot be less than one.")
         : value > 10 ? Error.New("Size values cannot be greater than ten.")
         : new Size(value);

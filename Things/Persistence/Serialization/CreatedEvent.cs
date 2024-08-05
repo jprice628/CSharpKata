@@ -13,7 +13,7 @@ internal static partial class Serialization
         { "Size", e.Size.Value }
     }.ToString();
 
-    private static Fin<ThingEvent> ToCreatedEvent(JObject obj) =>
+    private static Either<Error, ThingEvent> ToCreatedEvent(JObject obj) =>
         from rawTimestamp in obj.GetRequiredValue<DateTimeOffset>("Timestamp")
         let timestamp = new Timestamp(rawTimestamp)
         from rawThingId in obj.GetRequiredValue<Guid>("ThingId")

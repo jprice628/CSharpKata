@@ -41,7 +41,7 @@ public sealed record ThingId
     /// </summary>
     /// <param name="value">The value of the ID</param>
     /// <returns>A ThingID or an error</returns>
-    public static Fin<ThingId> New(Guid value) =>
+    public static Either<Error, ThingId> New(Guid value) =>
         value == Guid.Empty ? Error.New("The value of a thing ID cannot be an empty GUID.")
         : new ThingId(value);
 
@@ -50,7 +50,7 @@ public sealed record ThingId
     /// </summary>
     /// <param name="guidAsString">The value of the ID as a string</param>
     /// <returns>A ThingID or an error</returns>
-    public static Fin<ThingId> New(string guidAsString) =>
+    public static Either<Error, ThingId> New(string guidAsString) =>
         !Guid.TryParse(guidAsString, out var guid) ? Error.New("Unable to parse thing ID.")
         : New(guid);
 

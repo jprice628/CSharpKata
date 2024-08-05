@@ -11,7 +11,7 @@ internal static partial class Serialization
         ["NewShape"] = e.NewShape.ToString()
     }.ToString();
 
-    private static Fin<ThingEvent> ToReshapedEvent(JObject obj) =>
+    private static Either<Error, ThingEvent> ToReshapedEvent(JObject obj) =>
         from rawTimestamp in obj.GetRequiredValue<DateTimeOffset>("Timestamp")
         let timestamp = new Timestamp(rawTimestamp)
         from rawNewShape in obj.GetRequiredValue<string>("NewShape")
