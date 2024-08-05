@@ -1,4 +1,4 @@
-﻿namespace DomainTests;
+﻿namespace Things.Testing;
 
 internal static class EitherExtensions
 {
