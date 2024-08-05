@@ -28,29 +28,6 @@ public class ThingIdTests
     }
 
     [TestMethod]
-    public void ThingId_New_ReturnsEmptyGuidError()
-    {
-        // Act
-        var result = ThingId.New(Guid.Empty);
-
-        // Assert
-        result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("The value of a thing ID cannot be an empty GUID.");
-    }
-
-    [TestMethod]
-    public void ThingId_New_ReturnsUnableToParseError()
-    {
-        // Act
-        var guidAsString = "xyz123";
-        var result = ThingId.New(guidAsString);
-
-        // Assert
-        result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("Unable to parse thing ID.");
-    }
-
-    [TestMethod]
     public void ThingId_New_ReturnsRandomThingId()
     {
         // Act

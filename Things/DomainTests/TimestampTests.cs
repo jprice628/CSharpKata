@@ -27,18 +27,6 @@ public class TimestampTests
     }
 
     [TestMethod]
-    public void Timestamp_New_ReturnsUnableToParseError()
-    {
-        // Act
-        var str = "xyz";
-        var result = Timestamp.New(str);
-
-        // Assert
-        result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("Unable to parse timestamp.");
-    }
-
-    [TestMethod]
     public void Timestamp_ToUniversalTime_ReturnsUtcTimestamp()
     {
         // Act

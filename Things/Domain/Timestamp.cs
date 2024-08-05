@@ -19,11 +19,11 @@ public readonly record struct Timestamp(DateTimeOffset Value) : IComparable<Time
     /// <summary>
     /// Constructs a timestamp from a string value
     /// </summary>
-    /// <param name="valueAsString">A string representing a DateTimeOffset value</param>
+    /// <param name="value">A string representing a DateTimeOffset value</param>
     /// <returns>A timestamp or an error</returns>
-    public static Either<Error, Timestamp> New(string valueAsString) =>
-        !DateTimeOffset.TryParse(valueAsString, out var value) ? Error.New("Unable to parse timestamp.")
-        : new Timestamp(value);
+    public static Either<Error, Timestamp> New(string value) =>
+        from dt in ParseDateTimeOffset(value, "Unable to parse timestamp.")
+        select new Timestamp(dt);
 
     /// <inheritdoc/>
     public int CompareTo(Timestamp other) =>
