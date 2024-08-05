@@ -39,8 +39,8 @@ public sealed record ThingId
     /// <param name="value">The value of the ID</param>
     /// <returns>A ThingID or an error</returns>
     public static Either<Error, ThingId> New(Guid value) =>
-        value == Guid.Empty ? Error.New("The value of a thing ID cannot be an empty GUID.")
-        : new ThingId(value);
+        from _ in value.ErrorIfEmpty("The value of a thing ID cannot be an empty GUID.")
+        select new ThingId(value);
 
     /// <summary>
     /// Constructs a new ThingId
@@ -48,9 +48,9 @@ public sealed record ThingId
     /// <param name="guidAsString">The value of the ID as a string</param>
     /// <returns>A ThingID or an error</returns>
     public static Either<Error, ThingId> New(string guidAsString) =>
-        !Guid.TryParse(guidAsString, out var guid) ? Error.New("Unable to parse thing ID.")
-        : New(guid);
-
+        from guid in ParseGuid(guidAsString, "Unable to parse thing ID.")
+        from thingId in New(guid)
+        select thingId;
 
     /// <summary>
     /// Converts a ThingId to a Guid by returning its value
