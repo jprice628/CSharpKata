@@ -30,9 +30,9 @@ public static partial class Prelude
     /// <summary>
     /// Attempts to convert a string into a shape
     /// </summary>
-    /// <param name="s">The input string</param>
+    /// <param name="shapeAsString">The input string</param>
     /// <returns>A shape or an error</returns>
-    public static Fin<Shape> ToShape(string s) =>
-        !Enum.TryParse<Shape>(s, true, out var shape) ? Error.New("Prelude: Unable to parse shape.")
+    public static Fin<Shape> ToShape(string shapeAsString) =>
+        !Enum.TryParse<Shape>(shapeAsString, true, out var shape) ? Error.New($"Unable to parse shape '{shapeAsString}'.")
         : shape;
 }
