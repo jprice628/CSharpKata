@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace DomainTests;
+﻿namespace DomainTests;
 
 [TestClass]
 public class ShapeTests
@@ -12,7 +10,7 @@ public class ShapeTests
         var result = ToShape("round");
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Should().Be(Shape.Round);
     }
 
@@ -23,7 +21,7 @@ public class ShapeTests
         var result = ToShape("xyz");
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Prelude: Unable to parse shape.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("Unable to parse shape 'xyz'.");
     }
 }

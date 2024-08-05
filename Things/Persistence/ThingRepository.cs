@@ -55,8 +55,7 @@ internal class ThingRepository
         files.Select(ToThingId).Sequence();
 
     private static Either<Error, ThingId> ToThingId(FileInfo file) => 
-        ThingId.New(file.Name[6..^5]);
-        
+        ThingId.New(file.Name[6..^5]);        
 
     private static string GetSearchPattern(PartialThingId partialId) =>
         $"Thing-{partialId.Value}*.json";

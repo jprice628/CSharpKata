@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace DomainTests;
+﻿namespace DomainTests;
 
 [TestClass]
 public class ThingTests
@@ -47,7 +45,7 @@ public class ThingTests
         var result = Thing.New(stream);
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Id.Value.Should().NotBe(Guid.Empty);
         result.Value().Shape.Should().Be(Shape.Angular);
         result.Value().Size.Value.Should().Be(8);
@@ -61,8 +59,8 @@ public class ThingTests
         var result = Thing.New([]);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Thing: cannot create thing from empty stream.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("A thing cannot be created from an empty stream.");
     }
 
     [TestMethod]
@@ -82,8 +80,8 @@ public class ThingTests
         var result = Thing.New(stream);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Thing: first event in stream must be a created event.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("The first event in a thing's stream must be a created event.");
     }
 
     [TestMethod]

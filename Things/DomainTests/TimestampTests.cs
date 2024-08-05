@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using LanguageExt;
-
-namespace DomainTests;
+﻿namespace DomainTests;
 
 [TestClass]
 public class TimestampTests
@@ -25,7 +22,7 @@ public class TimestampTests
         var result = Timestamp.New(str);
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Value.Should().Be(DateTimeOffset.Parse(str));
     }
 
@@ -37,8 +34,8 @@ public class TimestampTests
         var result = Timestamp.New(str);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Timestamp: Unable to parse string.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("Unable to parse timestamp.");
     }
 
     [TestMethod]

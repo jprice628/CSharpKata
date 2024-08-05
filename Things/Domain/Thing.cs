@@ -63,7 +63,7 @@ public sealed record Thing
     /// <param name="events">An orderd set of events</param>
     /// <returns>A thing or an error</returns>
     private static Either<Error, Thing> New(IOrderedEnumerable<ThingEvent> events) => 
-        events.First() is not CreatedEvent created ? Error.New("A thing's stream must begin with a created event.")
+        events.First() is not CreatedEvent created ? Error.New("The first event in a thing's stream must be a created event.")
         : events.Skip(1).Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
 
     /// <summary>

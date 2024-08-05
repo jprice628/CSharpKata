@@ -1,5 +1,3 @@
-using FluentAssertions;
-
 namespace DomainTests;
 
 [TestClass]
@@ -13,7 +11,7 @@ public class ThingIdTests
         var result = ThingId.New(guid);
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Value.Should().Be(guid);
     }
 
@@ -25,7 +23,7 @@ public class ThingIdTests
         var result = ThingId.New(guidAsString);
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Value.Should().Be(new Guid(guidAsString));
     }
 
@@ -36,8 +34,8 @@ public class ThingIdTests
         var result = ThingId.New(Guid.Empty);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("ThingId: Value cannot be an empty GUID.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("The value of a thing ID cannot be an empty GUID.");
     }
 
     [TestMethod]
@@ -48,8 +46,8 @@ public class ThingIdTests
         var result = ThingId.New(guidAsString);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("ThingId: Unable to parse GUID.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("Unable to parse thing ID.");
     }
 
     [TestMethod]

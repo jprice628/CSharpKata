@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace DomainTests;
+﻿namespace DomainTests;
 
 [TestClass]
 public class SizeTests
@@ -12,7 +10,7 @@ public class SizeTests
         var result = Size.New(5);
 
         // Assert
-        result.IsSucc.Should().BeTrue();
+        result.IsRight.Should().BeTrue();
         result.Value().Value.Should().Be(5);
     }
 
@@ -23,8 +21,8 @@ public class SizeTests
         var result = Size.New(0);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Size: value cannot be less than 1.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("Size values cannot be less than one.");
     }
 
     [TestMethod]
@@ -34,7 +32,7 @@ public class SizeTests
         var result = Size.New(11);
 
         // Assert
-        result.IsSucc.Should().BeFalse();
-        result.Error().Message.Should().Be("Size: value cannot be greater than 10.");
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("Size values cannot be greater than ten.");
     }
 }
