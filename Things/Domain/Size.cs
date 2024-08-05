@@ -31,8 +31,8 @@ public sealed record Size
     /// <param name="value">An integer from 1 to 10 (inclusive)</param>
     /// <returns>A size value or an error</returns>
     public static Either<Error, Size> New(int value) =>
-        from validValue in Between(value, 1, 10)
-        select new Size(validValue);
+        from _ in value.ErrorIfNotBetween(1, 10, "Sizes must be between one and ten.")
+        select new Size(value);
 
     /// <summary>
     /// Converts a Size to an integer by returning its value

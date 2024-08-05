@@ -51,17 +51,19 @@ public sealed record Thing
     /// <param name="events">A set of events, starting with a created event</param>
     /// <returns>A thing or an error</returns>
     public static Either<Error, Thing> New(IEnumerable<ThingEvent> events) =>
-        !events.Any() ? Error.New("A thing cannot be created from an empty stream.")
-        : New(events.OrderBy(e => e.Timestamp)); 
+        from _ in ErrorIfEmpty(events, "A thing cannot be created from an empty stream.")
+        from thing in New(events.OrderBy(e => e.Timestamp))
+        select thing;
 
     /// <summary>
     /// Constructs a new thing from an ordered set of events
     /// </summary>
     /// <param name="events">An orderd set of events</param>
     /// <returns>A thing or an error</returns>
-    private static Either<Error, Thing> New(IOrderedEnumerable<ThingEvent> events) => 
-        events.First() is not CreatedEvent created ? Error.New("The first event in a thing's stream must be a created event.")
-        : events.Skip(1).Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
+    private static Either<Error, Thing> New(IOrderedEnumerable<ThingEvent> events) =>
+        from firstEvent in events.FirstItem()
+        from created in firstEvent.As<CreatedEvent>("The first event in a thing's stream must be a created event.")
+        select events.Skip(1).Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
 
     /// <summary>
     /// Changes the thing's shape

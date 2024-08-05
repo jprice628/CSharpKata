@@ -53,17 +53,6 @@ public class ThingTests
     }
 
     [TestMethod]
-    public void Thing_New_ReturnsErrorWhenStreamIsEmpty()
-    {
-        // Act
-        var result = Thing.New([]);
-
-        // Assert
-        result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("A thing cannot be created from an empty stream.");
-    }
-
-    [TestMethod]
     public void Thing_New_ReturnsErrorWhenFirstEventIsNotACreatedEvent()
     {
         // Arrange

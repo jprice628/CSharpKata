@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace PreludeTests;
+﻿namespace PreludeTests;
 
 [TestClass]
 public class IntegersTests
@@ -9,32 +7,43 @@ public class IntegersTests
     public void Prelude_Between_ReturnsValidIntegerValue()
     {
         // Act
-        var result = Between(5, 1, 10);
+        var result = 5.ErrorIfNotBetween(1, 10);
 
         // Assert
         result.IsRight.Should().BeTrue();
-        result.Value().Should().Be(5);
+        result.Value().Should().Be(unit);
     }
 
     [TestMethod]
-    public void Prelude_Between_ReturnsErrorOnLowValue()
+    public void Prelude_Between_ReturnsDefaultErrorOnLowValue()
     {
         // Act
-        var result = Between(-1, 1, 10);
+        var result = (-1).ErrorIfNotBetween(1, 10);
 
         // Assert
         result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("Value cannot be less than 1.");
+        result.Error().Message.Should().Be("The specified string must be between 1 and 10.");
     }
 
     [TestMethod]
-    public void Prelude_Between_ReturnsErrorOnHighValue()
+    public void Prelude_Between_ReturnsDefaultErrorOnHighValue()
     {
         // Act
-        var result = Between(20, 1, 10);
+        var result = 20.ErrorIfNotBetween(1, 10);
 
         // Assert
         result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("Value cannot be greater than 10.");
+        result.Error().Message.Should().Be("The specified string must be between 1 and 10.");
+    }
+
+    [TestMethod]
+    public void Prelude_Between_ReturnsCustomErrors()
+    {
+        // Act
+        var result = 20.ErrorIfNotBetween(1, 10, "The test value must be between 1 and 10.");
+
+        // Assert
+        result.IsRight.Should().BeFalse();
+        result.Error().Message.Should().Be("The test value must be between 1 and 10.");
     }
 }
