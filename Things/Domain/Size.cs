@@ -1,7 +1,4 @@
-﻿using LanguageExt;
-using LanguageExt.Common;
-
-namespace Things.Domain;
+﻿namespace Things.Domain;
 
 /// <summary>
 /// Provides an expressive way to describe the size of a thing

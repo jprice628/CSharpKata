@@ -1,7 +1,4 @@
-﻿using LanguageExt;
-using LanguageExt.Common;
-
-namespace Things.Domain;
+﻿namespace Things.Domain;
 
 /// <summary>
 /// Provides an expressive way to represent the time at which an event occurred

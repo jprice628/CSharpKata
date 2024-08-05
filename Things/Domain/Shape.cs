@@ -1,8 +1,4 @@
-﻿// TODO: Consider global using statements.
-using LanguageExt;
-using LanguageExt.Common;
-
-namespace Things.Domain;
+﻿namespace Things.Domain;
 
 /// <summary>
 /// Used the describe the shape of a thing
@@ -32,7 +28,7 @@ public static partial class Functions
     /// </summary>
     /// <param name="shapeAsString">The input string</param>
     /// <returns>A shape or an error</returns>
-    public static Either<Error, Shape> ToShape(string shapeAsString) =>
-        !Enum.TryParse<Shape>(shapeAsString, true, out var shape) ? Error.New($"Unable to parse shape '{shapeAsString}'.")
-        : shape;
+    public static Either<Error, Shape> ToShape(string value) =>
+        from shape in ParseEnum<Shape>(value)
+        select shape;
 }

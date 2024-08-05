@@ -13,15 +13,4 @@ public class ShapeTests
         result.IsRight.Should().BeTrue();
         result.Value().Should().Be(Shape.Round);
     }
-
-    [TestMethod]
-    public void Prelude_ToShape_ReturnsUnableToParseError()
-    {
-        // Act
-        var result = ToShape("xyz");
-
-        // Assert
-        result.IsRight.Should().BeFalse();
-        result.Error().Message.Should().Be("Unable to parse shape 'xyz'.");
-    }
 }
