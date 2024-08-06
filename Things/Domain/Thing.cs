@@ -52,18 +52,20 @@ public sealed record Thing
     /// <returns>A thing or an error</returns>
     public static Either<Error, Thing> New(IEnumerable<ThingEvent> events) =>
         from _ in ErrorIfEmpty(events, "A thing cannot be created from an empty stream.")
-        from thing in New(events.OrderBy(e => e.Timestamp))
-        select thing;
+        let ordered = events.OrderBy(e => e.Timestamp)
+        from created in GetCreatedEvent(ordered)
+        let tail = ordered.Skip(1)
+        select tail.Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
 
     /// <summary>
-    /// Constructs a new thing from an ordered set of events
+    /// Gets the first event from a collection and casts it as a CreatedEvent
     /// </summary>
-    /// <param name="events">An orderd set of events</param>
-    /// <returns>A thing or an error</returns>
-    private static Either<Error, Thing> New(IOrderedEnumerable<ThingEvent> events) =>
+    /// <param name="events">A collection of events</param>
+    /// <returns>A created event or an error</returns>
+    private static Either<Error, CreatedEvent> GetCreatedEvent(IEnumerable<ThingEvent> events) =>
         from firstEvent in events.FirstItem()
         from created in firstEvent.As<CreatedEvent>("The first event in a thing's stream must be a created event.")
-        select events.Skip(1).Aggregate(new Thing(created, false), (thing, e) => thing.When(e, false));
+        select created;
 
     /// <summary>
     /// Changes the thing's shape
