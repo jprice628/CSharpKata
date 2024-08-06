@@ -4,7 +4,7 @@
 public class DateTimeOffsetsTests
 {
     [TestMethod]
-    public void Prelude_ParseDateTimeOffset_ReturnsDateTimeOffset()
+    public void DateTimeOffsets_ParseDateTimeOffset_ReturnsDateTimeOffset()
     {
         // Act
         var str = "7/29/2024 3:17:48 AM +00:00";
@@ -16,7 +16,7 @@ public class DateTimeOffsetsTests
     }
 
     [TestMethod]
-    public void Prelude_ParseDateTimeOffset_ReturnsDefaultError()
+    public void DateTimeOffsets_ParseDateTimeOffset_ReturnsDefaultError()
     {
         // Act
         var str = "abc123";
@@ -28,7 +28,7 @@ public class DateTimeOffsetsTests
     }
 
     [TestMethod]
-    public void Prelude_ParseDateTimeOffset_ReturnsCustomError()
+    public void DateTimeOffsets_ParseDateTimeOffset_ReturnsCustomError()
     {
         // Act
         var str = "abc123";

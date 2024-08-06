@@ -4,7 +4,7 @@
 public class CastingTests
 {
     [TestMethod]
-    public void Prelude_As_ReturnsObjectOfCorrectType()
+    public void Casting_As_ReturnsObjectOfCorrectType()
     {
         // Act
         object obj = this;
@@ -17,7 +17,7 @@ public class CastingTests
     }
 
     [TestMethod]
-    public void Prelude_As_ReturnsDefaultError()
+    public void Casting_As_ReturnsDefaultError()
     {
         // Act
         object obj = this;
@@ -29,7 +29,7 @@ public class CastingTests
     }
 
     [TestMethod]
-    public void Prelude_As_ReturnsCustomError()
+    public void Casting_As_ReturnsCustomError()
     {
         // Act
         object obj = this;

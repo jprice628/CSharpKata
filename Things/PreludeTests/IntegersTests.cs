@@ -4,7 +4,7 @@
 public class IntegersTests
 {
     [TestMethod]
-    public void Prelude_Between_ReturnsValidIntegerValue()
+    public void Integers_Between_ReturnsValidIntegerValue()
     {
         // Act
         var result = 5.ErrorIfNotBetween(1, 10);
@@ -15,7 +15,7 @@ public class IntegersTests
     }
 
     [TestMethod]
-    public void Prelude_Between_ReturnsDefaultErrorOnLowValue()
+    public void Integers_Between_ReturnsDefaultErrorOnLowValue()
     {
         // Act
         var result = (-1).ErrorIfNotBetween(1, 10);
@@ -26,7 +26,7 @@ public class IntegersTests
     }
 
     [TestMethod]
-    public void Prelude_Between_ReturnsDefaultErrorOnHighValue()
+    public void Integers_Between_ReturnsDefaultErrorOnHighValue()
     {
         // Act
         var result = 20.ErrorIfNotBetween(1, 10);
@@ -37,7 +37,7 @@ public class IntegersTests
     }
 
     [TestMethod]
-    public void Prelude_Between_ReturnsCustomErrors()
+    public void Integers_Between_ReturnsCustomErrors()
     {
         // Act
         var result = 20.ErrorIfNotBetween(1, 10, "The test value must be between 1 and 10.");

@@ -14,7 +14,7 @@ public readonly record struct Timestamp(DateTimeOffset Value) : IComparable<Time
     /// Provides a timestamp for the current time in UTC
     /// </summary>
     public static Timestamp UtcNow => 
-        new Timestamp(DateTimeOffset.UtcNow);
+        new(DateTimeOffset.UtcNow);
 
     /// <summary>
     /// Constructs a timestamp from a string value

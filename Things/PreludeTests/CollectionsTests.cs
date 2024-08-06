@@ -6,7 +6,7 @@ namespace PreludeTests;
 public class CollectionsTests
 {
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsNonEmptyCollection()
+    public void Collections_ErrorIfEmpty_ReturnsNonEmptyCollection()
     {
         // Act
         var collection = new[] { 1, 2, 3 };
@@ -18,7 +18,7 @@ public class CollectionsTests
     }
 
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsDefaultErrorWhenCollectionIsEmpty()
+    public void Collections_ErrorIfEmpty_ReturnsDefaultErrorWhenCollectionIsEmpty()
     {
         // Act
         var collection = System.Array.Empty<int>();
@@ -30,7 +30,7 @@ public class CollectionsTests
     }
 
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsCustomErrorWhenCollectionIsEmpty()
+    public void Collections_ErrorIfEmpty_ReturnsCustomErrorWhenCollectionIsEmpty()
     {
         // Act
         var collection = System.Array.Empty<int>();
@@ -42,7 +42,7 @@ public class CollectionsTests
     }
 
     [TestMethod]
-    public void Prelude_FirstItem_ReturnsFirstItemFromTheCollection()
+    public void Collections_FirstItem_ReturnsFirstItemFromTheCollection()
     {
         // Act
         var collection = new[] { 1, 2, 3, 4 };

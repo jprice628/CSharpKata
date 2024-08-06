@@ -6,7 +6,7 @@ namespace PreludeTests;
 public class GuidsTests
 {
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsUnitOnNonEmptyGuid()
+    public void Guids_ErrorIfEmpty_ReturnsUnitOnNonEmptyGuid()
     {
         // Act
         var guid = Guid.NewGuid();
@@ -17,7 +17,7 @@ public class GuidsTests
     }
 
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsDefaultError()
+    public void Guids_ErrorIfEmpty_ReturnsDefaultError()
     {
         // Act
         var guid = Guid.Empty;
@@ -29,7 +29,7 @@ public class GuidsTests
     }
 
     [TestMethod]
-    public void Prelude_ErrorIfEmpty_ReturnsCustomError()
+    public void Guids_ErrorIfEmpty_ReturnsCustomError()
     {
         // Act
         var guid = Guid.Empty;

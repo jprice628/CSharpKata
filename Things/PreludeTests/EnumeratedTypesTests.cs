@@ -4,7 +4,7 @@ namespace PreludeTests;
 public class EnumeratedTypesTests
 {
     [TestMethod]
-    public void Prelude_ParseEnum_ReturnsEnumeratedValue()
+    public void EnumeratedTypes_ParseEnum_ReturnsEnumeratedValue()
     {
         // Act
         var result = ParseEnum<Color>("red");
@@ -15,7 +15,7 @@ public class EnumeratedTypesTests
     }
 
     [TestMethod]
-    public void Prelude_ParseEnum_ReturnsErrorWhenUnableToParse()
+    public void EnumeratedTypes_ParseEnum_ReturnsErrorWhenUnableToParse()
     {
         // Act
         var result = ParseEnum<Color>("yellow");

@@ -31,7 +31,7 @@ public sealed record ThingId
     /// </summary>
     /// <returns>A ThingId</returns>
     public static ThingId New() =>
-        new ThingId(Guid.NewGuid());
+        new(Guid.NewGuid());
 
     /// <summary>
     /// Constructs a new ThingId
@@ -45,10 +45,10 @@ public sealed record ThingId
     /// <summary>
     /// Constructs a new ThingId
     /// </summary>
-    /// <param name="guidAsString">The value of the ID as a string</param>
+    /// <param name="value">The value of the ID as a string</param>
     /// <returns>A ThingID or an error</returns>
-    public static Either<Error, ThingId> New(string guidAsString) =>
-        from guid in ParseGuid(guidAsString, "Unable to parse thing ID.")
+    public static Either<Error, ThingId> New(string value) =>
+        from guid in ParseGuid(value, "Unable to parse thing ID.")
         from thingId in New(guid)
         select thingId;
 
